@@ -1,0 +1,13 @@
+.htaccess là file dùng để điều hướng tất cả request về file index.php
+Config/config.php là file khai báo các biến global như BASE_URL
+Config/HuyDB.php là file quản lý kết nối và truy xuất từ database
+Config/Route.php là file khai báo các đường dẫn đến file match với request url.
+Init.php luôn phải được gọi ở đầu mỗi file nếu file đó có làm việc với database hoặc session hoặc dùng các biến global
+
+=>Follow:
+index.php nhận request, tách các phần path và parameter của GET (nếu có)
+-> từ path kiểm tra trong route.php xem match với đường dẫn nào để gọi ra file php tương ứng
+
+**Không nên đặt tên router trùng tên thư mục**
+**thư viện tự dev bằng code thuần** 
+**project chưa áp dụng mvc**
