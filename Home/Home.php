@@ -21,8 +21,8 @@
 <div class="menu">
     <ul>
         <li><a href="<?= BASE_URL ?>">Home Page</a></li>
-            <li><a href='#'>Sign In</a>";
-            <li><a href='#'>Sign Up</a>";
+            <li><a href='#'>Sign In</a>
+            <li><a href='#'>Sign Up</a>
 
         <li>
             <form method="post" action="">
