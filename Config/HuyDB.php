@@ -7,7 +7,7 @@ class HuyDB
 	private $hostname = 'localhost',
 			$username = 'root',
 			$password = '',
-			$dbname = 'webAssignment';
+			$dbname = 'DBNAME';
 
 	// Biến lưu trữ kết nối
 	private $cn = NULL;
