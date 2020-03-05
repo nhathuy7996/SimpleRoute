@@ -1,10 +1,13 @@
 <?php 
-    include_once( "Init.php");
+    //include_once( "Init.php");
     // Query statement
     //$query ="SELECT * FROM photos";
 
     // Get result & Get data
     //$photos = $DB->fetch_assoc($query);
+    function test2(){
+        echo "test2 call";
+    }
 
 ?>
 <html>

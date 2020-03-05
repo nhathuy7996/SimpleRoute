@@ -7,48 +7,60 @@ class HuyDB
 	private $hostname = 'localhost',
 			$username = 'root',
 			$password = '',
-			$dbname = 'DBNAME';
+			$dbname = 'web';
 
 	// Biến lưu trữ kết nối
-	private $cn = NULL;
+	private static $cn = NULL;
 
-	public function Get_Connect(){
-		if(empty($cn))
-			$this->connect();
-		else
-			return $this->cn;
+	private static $instant = null;
+
+	public function __construct(){
+		
+		if(empty(self::$instant)){
+			self::$instant = $this;
+		}
+		$this->connect();
+	}
+
+	public static function Instant(){
+		if(empty(self::$instant)){
+			self::$instant = new HuyDB();
+		}
+	
+		return self::$instant;
 	}
 
 	// Hàm kết nối
-	public function connect()
+	function connect()
 	{
-		$this->cn = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);
+		if(empty(self::$cn))
+			self::$cn = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);
 	}
 
 	// Hàm ngắt kết nối
-	public function close()
+	function close()
 	{
-	    if ($this->cn)
+	    if (self::$cn)
 	    {
-	        mysqli_close($this->cn);
+	        mysqli_close(self::$cn);
 	    }
 	}
 
 	// Hàm truy vấn
 	public function query($sql = null) 
 	{		
-	    if ($this->cn)
+	    if (self::$cn)
 	    {
-			return mysqli_query($this->cn, $sql);
+			return mysqli_query(self::$cn, $sql);
 	    }
 	}
 
 	// Hàm đếm số hàng
 	public function num_rows($sql = null) 
 	{
-		if ($this->cn)
+		if (self::$cn)
 		{
-			$query = mysqli_query($this->cn, $sql);
+			$query = mysqli_query(self::$cn, $sql);
 			if ($query)
 			{
 				$row = mysqli_num_rows($query);
@@ -60,9 +72,9 @@ class HuyDB
 	// Hàm lấy dữ liệu
 	public function fetch_assoc($sql = null, $type = 0)
 	{
-		if ($this->cn)
+		if (self::$cn)
 		{
-			$query = mysqli_query($this->cn, $sql);
+			$query = mysqli_query(self::$cn, $sql);
 			if ($query)
 			{
 				if ($type == 0)
@@ -86,15 +98,15 @@ class HuyDB
 	}
 
 	public function Security($sql = null){
-		return mysqli_real_escape_string($this->cn,$sql);
+		return mysqli_real_escape_string(self::$cn,$sql);
 	}
 
 	// Hàm lấy ID cao nhất
 	public function insert_id()
 	{
-		if ($this->cn)
+		if (self::$cn)
 		{
-			$count = mysqli_insert_id($this->cn);
+			$count = mysqli_insert_id(self::$cn);
 			if ($count == '0')
 			{
 				$count = '1';
@@ -110,9 +122,9 @@ class HuyDB
 	// Hàm charset cho database
 	public function set_char($uni)
 	{
-		if ($this->cn)
+		if (self::$cn)
 		{
-			mysqli_set_charset($this->cn, $uni);
+			mysqli_set_charset(self::$cn, $uni);
 		}
 	}
 }
