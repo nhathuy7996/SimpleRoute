@@ -10,4 +10,5 @@ index.php nhận request, tách các phần path và parameter của GET (nếu 
 
 **Không nên đặt tên router trùng tên thư mục**
 **thư viện tự dev bằng code thuần** 
-**project chưa áp dụng mvc**
+**work in both mvc and non mvc**
+**work in both oop and non oop**
