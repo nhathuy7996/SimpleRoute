@@ -9,6 +9,7 @@ session_start();
 require_once "Config/Route.php";
 require_once "Config/Config.php";
 require_once "Config/HuyDB.php";
+require_once "Config/Lang_Ctrl.php";
 
 
 $request = $_SERVER['REQUEST_URI'];
@@ -16,6 +17,7 @@ $request = str_replace(ROOT,"",$request);
 $Data = array();
 
 Redirect($request,$Route);
+
 
 function Redirect($Request = null, $Route = array()){
 
@@ -66,7 +68,7 @@ function CreateObject($list_str){
             if(method_exists($object,$list_str[$i])){
                 $object->{$list_str[$i]}();
             }else{
-                echo "function ".$list_str[$i]. " does'nt exist";
+                echo "function ".$list_str[$i]. " doesn't exist";
             }
         }
     }else{
@@ -74,7 +76,7 @@ function CreateObject($list_str){
             if(function_exists($list_str[$i])){
                 $list_str[$i]();
             }else{
-                echo "function ".$list_str[$i]. " does'nt exist";
+                echo "function ".$list_str[$i]. " doesn't exist";
             }
         }
     } 

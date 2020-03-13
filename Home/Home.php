@@ -5,10 +5,7 @@
 
     // Get result & Get data
     //$photos = $DB->fetch_assoc($query);
-    function test2(){
-        echo "test2 call";
-    }
-
+    $l = Lang_Ctrl::Instant();
 ?>
 <html>
 <header>
@@ -17,7 +14,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </header>
 <body>
-<h1 class="h1">HOME PAGE</h1>
+<h1 class="h1"><?= $l->Trans("HOME PAGE") ?></h1>
 
 <h5 class="h5">PHOTOGRAPHY</h5>
 
