@@ -1,6 +1,6 @@
 <?php
 //https://github.com/nhathuy7996/SimpleRoute
-//version 1.3
+//version 1.4
 /*
 spl_autoload_register(function ($class_name) {
     require_once $class_name . '.php';
