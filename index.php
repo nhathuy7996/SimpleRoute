@@ -45,7 +45,7 @@ function Redirect($Request = null, $Route = array()){
 }
 
 function CreateObject($list_str){
-    $path = '';
+    $path = 'MVC/';
     $id_class = -1;
     for($i= 0; $i < count($list_str); $i++){
         $path .= $list_str[$i];
