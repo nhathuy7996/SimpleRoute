@@ -4,6 +4,13 @@ khi upload web lên host thực thì bỏ trống biến ROOT.
 với localhost thì cần để tên thư mục chứa web trong phần ROOT.
 
 Config/HuyDB.php là file quản lý kết nối và truy xuất từ database
+khai báo hostname, username, pass, databasename trong HuyDB. khi cần dùng gọi HuyDB::Instant()->(method cần dùng)
+xem mô tả trong HuyDB để biết chức năng các method. Connect được tự động gọi còn close thì phải tự gọi bằng HuyDB::Instant()->Close();
+
+=>Follow:
+index.php nhận request, tách các phần path và parameter của GET (nếu có)
+-> từ path kiểm tra trong Route.php xem match với đường dẫn nào để gọi ra file php tương ứng
+
 Config/Route.php là file khai báo các đường dẫn đến file match với request url.
 vd: class Huy có đường dẫn MVC/Home/Huy.php có các hàm là Test1(). Muốn request đến đường dẫn VAD gọi ra hàm Test1() thì cần khai báo trong Route.php như sau
 $Route['/VAD'] = "Home/Huy/Test1"; 
@@ -17,9 +24,11 @@ function Test1() vẫn được match với request VAD. Yên tâm nhá :))
 Các file .php tự tạp BẮT BUỘC phải để trong thư mục MVC để tránh việc mọi người đều có quyền truy cập bằng webrequest
 MỌI THƯ MỤC trừ Config và Language khi nằm ngoài thư mục MVC đều có thể bị truy cập bằng webrequest.
 
-=>Follow:
-index.php nhận request, tách các phần path và parameter của GET (nếu có)
--> từ path kiểm tra trong route.php xem match với đường dẫn nào để gọi ra file php tương ứng
+Tắt bật multi Language bằng cách gọi Lang_Ctrl::Instant()->is_multi_language = true/false;
+Đổi thư viện ngôn ngữ bằng Lang_Ctrl::Instant()->ChangeDict("VI_EN"); với file VI_EN.txt nằm trong thư mục Language có cấu trúc là một json có dạng "cụm cần dịch":"cụm được dịch"
+vd: "HOME PAGE":"Trang Chủ"
+khi gọi trong thẻ html <h1><?= T("HOME PAGE") ?></h1> với is_multi_language đang bật sẽ hiển thị trên browser là "Trang Chủ".
+
 
 **framework tự dev, dùng thoải mái nhưng nhớ để credit** 
 
