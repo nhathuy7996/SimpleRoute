@@ -8,6 +8,12 @@ Config/Route.php là file khai báo các đường dẫn đến file match với
 vd: class Huy có đường dẫn MVC/Home/Huy.php có các hàm là Test1(). Muốn request đến đường dẫn VAD gọi ra hàm Test1() thì cần khai báo trong Route.php như sau
 $Route['/VAD'] = "Home/Huy/Test1"; 
 
+**work in both mvc and non mvc**
+**work in both oop and non oop**
+Nghĩa là file MVC/Home/Huy.php hoàn toàn ko cần phải là 1 class, chỉ là một file .php chưa function Test1() thì khi khai báo trong Route.php
+$Route['/VAD'] = "Home/Huy/Test1"; 
+function Test1() vẫn được match với request VAD. Yên tâm nhá :))
+
 Các file .php tự tạp BẮT BUỘC phải để trong thư mục MVC để tránh việc mọi người đều có quyền truy cập bằng webrequest
 MỌI THƯ MỤC trừ Config và Language khi nằm ngoài thư mục MVC đều có thể bị truy cập bằng webrequest.
 
@@ -15,7 +21,5 @@ MỌI THƯ MỤC trừ Config và Language khi nằm ngoài thư mục MVC đề
 index.php nhận request, tách các phần path và parameter của GET (nếu có)
 -> từ path kiểm tra trong route.php xem match với đường dẫn nào để gọi ra file php tương ứng
 
-**Không nên đặt tên router trùng tên thư mục**
-**thư viện tự dev bằng code thuần** 
-**work in both mvc and non mvc**
-**work in both oop and non oop**
+**framework tự dev, dùng thoải mái nhưng nhớ để credit** 
+
