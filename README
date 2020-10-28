@@ -1,8 +1,15 @@
-.htaccess là file dùng để điều hướng tất cả request về file index.php
+.htaccess là file dùng để điều hướng tất cả request về file index.php và giới hạn quyền truy cập vào các thư mục chưa code backend như MVC, config, Language
 Config/config.php là file khai báo các biến global như BASE_URL
+khi upload web lên host thực thì bỏ trống biến ROOT.
+với localhost thì cần để tên thư mục chứa web trong phần ROOT.
+
 Config/HuyDB.php là file quản lý kết nối và truy xuất từ database
 Config/Route.php là file khai báo các đường dẫn đến file match với request url.
-Init.php luôn phải được gọi ở đầu mỗi file nếu file đó có làm việc với database hoặc session hoặc dùng các biến global
+vd: class Huy có đường dẫn MVC/Home/Huy.php có các hàm là Test1(). Muốn request đến đường dẫn VAD gọi ra hàm Test1() thì cần khai báo trong Route.php như sau
+$Route['/VAD'] = "Home/Huy/Test1"; 
+
+Các file .php tự tạp BẮT BUỘC phải để trong thư mục MVC để tránh việc mọi người đều có quyền truy cập bằng webrequest
+MỌI THƯ MỤC trừ Config và Language khi nằm ngoài thư mục MVC đều có thể bị truy cập bằng webrequest.
 
 =>Follow:
 index.php nhận request, tách các phần path và parameter của GET (nếu có)
