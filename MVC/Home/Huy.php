@@ -6,8 +6,7 @@ class Huy{
 
     function test1(){
       HuyDB::Instant();
-    //Load view
-        include_once "Home/Home.php";
+      Load_View("Home/Home.php");
     }
 }
 

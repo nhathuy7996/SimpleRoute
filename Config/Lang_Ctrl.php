@@ -6,6 +6,8 @@ class Lang_Ctrl{
     private $current_Dict_name = "VI_EN",
             $Dict = array();
 
+    public $is_multi_language = true;
+
 
     public static function Instant(){
         if(empty(self::$instant)){
@@ -21,6 +23,8 @@ class Lang_Ctrl{
     }
 
     public function Trans($text = ""){
+        if(!$this->is_multi_language)
+            return $text;
         if(count($this->Dict) <= 0)
             $this->ChangeDict($this->current_Dict_name);
         foreach($this->Dict as $key=>$value){

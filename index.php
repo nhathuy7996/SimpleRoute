@@ -1,6 +1,6 @@
 <?php
 //https://github.com/nhathuy7996/SimpleRoute
-//version 1.4
+//version 1.5
 /*
 spl_autoload_register(function ($class_name) {
     require_once $class_name . '.php';
@@ -17,6 +17,7 @@ require_once "Config/Lang_Ctrl.php";
 $request = $_SERVER['REQUEST_URI'];
 $request = str_replace(ROOT,"",$request);
 $Data = array();
+
 
 Redirect($request,$Route);
 
@@ -84,6 +85,14 @@ function CreateObject($list_str){
     } 
 
     return $id_class != -1 ? true : false;
+}
+
+function Load_View($path){
+    include_once $path;
+}
+
+function T($text){
+    return Lang_Ctrl::Instant()->Trans($text);
 }
 
 ?>
