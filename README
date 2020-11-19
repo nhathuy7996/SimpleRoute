@@ -29,6 +29,7 @@ Tắt bật multi Language bằng cách gọi Lang_Ctrl::Instant()->is_multi_lan
 vd: "HOME PAGE":"Trang Chủ"
 khi gọi trong thẻ html <h1><?= T("HOME PAGE") ?></h1> với is_multi_language đang bật sẽ hiển thị trên browser là "Trang Chủ".
 
+những thư mục cần để public (vd: upload, ...) thì vẫn tạo trong thư mục Access để tránh trường hợp inject shell. Truy cập bằng PUBLIC_URL +"Tên_Thư_mục/tên_tệp.đuôi";
 
 **framework tự dev, dùng thoải mái nhưng nhớ để credit** 
 
