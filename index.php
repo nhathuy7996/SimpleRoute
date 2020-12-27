@@ -88,7 +88,7 @@ function CreateObject($list_str){
 }
 
 function Load_View($path){
-    include_once $path;
+    include_once "MVC/".$path.".php";
 }
 
 function T($text){
