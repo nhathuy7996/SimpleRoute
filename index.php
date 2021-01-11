@@ -87,11 +87,15 @@ function CreateObject($list_str){
     return $id_class != -1 ? true : false;
 }
 
-function Load_View($path){
+function Load_View($path,$data=[]){
     if(!file_exists("MVC/".$path.".php")){
         echo "VIEW ".$path." DOESN'T EXIST!";
         return;
     }
+    if(count($data)>0)
+        foreach ($data as $key => $value) {
+            $$key = $value;
+        }
     include "MVC/".$path.".php";
 }
 
