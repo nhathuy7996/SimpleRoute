@@ -88,7 +88,11 @@ function CreateObject($list_str){
 }
 
 function Load_View($path){
-    include_once "MVC/".$path.".php";
+    if(!file_exists("MVC/".$path.".php")){
+        echo "VIEW ".$path." DOESN'T EXIST!";
+        return;
+    }
+    include "MVC/".$path.".php";
 }
 
 function T($text){
