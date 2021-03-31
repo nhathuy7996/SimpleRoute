@@ -18,7 +18,6 @@ $request = $_SERVER['REQUEST_URI'];
 $request = str_replace(ROOT,"",$request);
 $Data = array();
 
-
 Redirect($request,$Route);
 
 
@@ -32,7 +31,10 @@ function Redirect($Request = null, $Route = array()){
         $query = parse_url($Request)['query'];
         $data_request = parse_str($query,$GET);
     }
-    $path = parse_url($Request)['path'];
+
+    $path = "";
+    if(isset(parse_url($Request)['path']))
+        $path = parse_url($Request)['path'];
 
     if(!isset($Route[$path]) || empty($Route[$path])){
         echo "REQUEST ERROR!";
@@ -65,6 +67,7 @@ function CreateObject($list_str){
     $Is_oop = class_exists($list_str[$id_class]);
  
     if($Is_oop){
+  
         $object = new $list_str[$id_class]();
         
         for($i = $id_class+1; $i < count($list_str); $i++ ){
@@ -87,16 +90,44 @@ function CreateObject($list_str){
     return $id_class != -1 ? true : false;
 }
 
-function Load_View($path,$data=[]){
+function Load_View($path,$data = array()){
     if(!file_exists("MVC/".$path.".php")){
-        echo "VIEW ".$path." DOESN'T EXIST!";
+        echo "VIEW DOESNT EXIST!";
         return;
     }
-    if(count($data)>0)
-        foreach ($data as $key => $value) {
+    $Keys = [];
+    if(count($data) > 0){
+        foreach($data as $key=>$value){
             $$key = $value;
+            $Keys[] = $key;
         }
+    }
+
     include "MVC/".$path.".php";
+}
+
+function Load_Model($path){
+    if(!file_exists("MVC/".$path.".php")){
+        echo "MODEL DOESNT EXIST!";
+        return;
+    }
+        
+    include_once "MVC/".$path.".php";
+    $list_path = explode("/",$path);
+    $class_index = count($list_path)-1;
+    return new $list_path[$class_index]();
+}
+
+function Load_Controller($path){
+    if(!file_exists("MVC/".$path.".php")){
+        echo "CONTROLLER DOESNT EXIST!";
+        return;
+    }
+
+    include_once "MVC/".$path.".php";
+    $list_path = explode("/",$path);
+    $class_index = count($list_path)-1;
+    return new $list_path[$class_index]();
 }
 
 function T($text){
